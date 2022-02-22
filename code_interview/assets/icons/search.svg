@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="21px" viewBox="0 0 20 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BUTTONS/NAVBAR/search</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="BUTTONS/NAVBAR/search" fill="#40CBFF">
+            <path d="M7.5,12 C5.019,12 3,9.981 3,7.5 C3,5.019 5.019,3 7.5,3 C9.981,3 12,5.019 12,7.5 C12,9.981 9.981,12 7.5,12 L7.5,12 Z M20,17.879 L13.753,11.632 C14.539,10.446 15,9.026 15,7.5 C15,3.364 11.636,0 7.5,0 C3.364,0 0,3.364 0,7.5 C0,11.635 3.364,15 7.5,15 C9.026,15 10.446,14.539 11.632,13.753 L17.879,20 L20,17.879 Z" id="art"></path>
+        </g>
+    </g>
+</svg>

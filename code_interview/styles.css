@@ -1,0 +1,397 @@
+/* Global Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: NeueHaasGrotText-55Roman;
+  src: url("./assets/Typefaces/NeueHaasGrotText-55Roman.otf");
+}
+@font-face {
+  font-family: NeueHaasGrotText-56Italic;
+  src: url("./assets/Typefaces/NeueHaasGrotText-56Italic.otf");
+}
+@font-face {
+  font-family: NeueHaasGrotText-65Medium;
+  src: url("./assets/Typefaces/NeueHaasGrotText-65Medium.otf");
+}
+@font-face {
+  font-family: NeueHaasGrotText-66MediumItalic;
+  src: url("./assets/Typefaces/NeueHaasGrotText-66MediumItalic.otf");
+}
+@font-face {
+  font-family: NeueHaasGrotText-75Bold;
+  src: url("./assets/Typefaces/NeueHaasGrotText-75Bold.otf");
+}
+@font-face {
+  font-family: NeueHaasGrotText-76BoldItalic;
+  src: url("./assets/Typefaces/NeueHaasGrotText-76BoldItalic.otf");
+}
+
+html {
+  font-size: 62.5%;
+
+  /* Colors */
+  --background-color: #ffffff;
+  --gray-text: #969696;
+  --dark-gray-text: #6e6e6e;
+  --body-text: #ffffff;
+  --light-blue: #40cbff;
+  --dark-blue: #007bad;
+
+  /* Font Sizes */
+  --header1: 18.6px;
+  --header2: 24px;
+  --font2: 12px;
+  --font3: 13px;
+  --font4: 14px;
+  --font5: 15px;
+  --font6: 20px;
+  --font7: 22px;
+  --font9: 30px;
+
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: var(--header1);
+}
+h2 {
+  font-size: var(--header2);
+}
+li,
+button,
+label,
+input,
+a,
+p {
+  font-size: var(--font2);
+}
+
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  color: var(--body-text);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  background-color: var(--light-blue);
+  padding: 8.88px 32.5px;
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+}
+
+header h1 {
+  font-family: NeueHaasGrotText-75Bold, serif;
+  font-size: 18.6px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+}
+
+header h1 .italic {
+  font-family: NeueHaasGrotText-56Italic, serif;
+}
+
+header h1 span {
+  font-family: NeueHaasGrotText-55Roman, serif;
+  font-size: 14.88px;
+}
+.search-bar .inventory {
+  font-family: NeueHaasGrotText-55Roman, serif;
+}
+
+header li {
+  font-size: var(--font2);
+}
+
+nav {
+  padding-left: 100px;
+}
+nav li {
+  letter-spacing: 1px;
+}
+nav li:last-child {
+  padding-left: 1rem;
+}
+
+.user-info {
+  font-size: var(--font4);
+}
+.drop-down-icon {
+  width: 12px;
+  height: 9px;
+}
+
+.search-bar {
+  height: 75px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--dark-blue);
+}
+
+#search_container {
+  margin-left: 26.5px;
+  position: relative;
+}
+#search_container input {
+  width: 250px;
+  height: 26.5px;
+  font-size: var(--font5);
+  padding: 11.5px;
+}
+#search_container .car-type {
+  list-style-type: none;
+  color: var(--light-blue);
+}
+#search_container .model {
+  list-style-type: none;
+  padding-left: 2rem;
+}
+#search_container .search-results {
+  background: #ffffff;
+  color: var(--gray-text);
+  width: 300px;
+  position: absolute;
+  /* height: 100%; */
+  z-index: 10;
+  top: 100%;
+}
+
+.search-bar div {
+  flex-grow: 1;
+}
+.search-bar .inventory {
+  font-size: var(--font6);
+}
+
+.search-bar .sort-results {
+  font-size: var(--font3);
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+
+/* Card */
+
+.results-container {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr)); */
+  grid-template-columns: repeat(2, minmax(35rem, 1fr));
+  column-gap: 51px;
+  row-gap: 34.42px;
+  margin: 35px 38px;
+}
+.result-card {
+  height: 560px;
+  width: 481px;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-text);
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-header {
+  color: var(--dark-blue);
+  justify-content: space-between;
+  width: 100%;
+  font-family: "NeueHaasGrotText-55Roman", sans-serif;
+}
+
+.card-header img {
+  margin-right: 8.77px;
+}
+
+.financing-info {
+  color: var(--gray-text);
+}
+.financing-info {
+  width: 200px;
+  padding-left: 1.16;
+}
+.financing-info div {
+  border-bottom: 1px solid #e8ea80;
+  width: 150px;
+}
+
+.financing-info .monthly-payments {
+  padding-bottom: 13.21px;
+}
+.financing-info .monthly-payments span:first-child {
+  font-size: var(--font9);
+  color: var(--dark-gray-text);
+}
+.financing-info .monthly-payments span:nth-child(2) {
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-size: var(--font2);
+}
+.financing-info .monthly-payments span:last-child {
+  text-transform: capitalize;
+  font-size: var(--font4);
+}
+
+.financing-info .cash-down {
+  text-transform: uppercase;
+  padding-bottom: 7.96px;
+  padding-top: 15.53px;
+}
+.financing-info .cash-down {
+  font-size: var(--font7);
+  color: var(--dark-gray-text);
+}
+.financing-info .cash-down span {
+  letter-spacing: 1.2px;
+  font-size: var(--font2);
+  color: var(--gray-text);
+}
+
+.car-colors-container .color {
+  padding: 10px 17.5px;
+  margin-right: 0.5rem;
+  border: 1px solid #979797;
+  color: var(--card-color-gray);
+  color: blue;
+}
+.car-colors-container {
+  color: var(--gray-text);
+}
+.car-colors-container .silver {
+  background: #d8d8d8;
+}
+.car-colors-container .black {
+  background: #000000;
+}
+.car-color-interior,
+.car-color-exterior {
+  margin: 0.75rem 0;
+  justify-content: flex-start;
+  font-size: var(--font3);
+}
+
+.car-specifications-container {
+  background: #e8eae0;
+  color: var(--gray-text);
+  height: 238px;
+  width: 100%;
+  position: relative;
+}
+
+.car-specifications {
+  padding-top: 57.47px;
+  padding-left: 50px;
+  height: 155px;
+  width: 380px;
+}
+
+.car-image {
+  position: absolute;
+  bottom: calc(100% - 53px);
+  right: 34px;
+}
+
+.car-specifications ul li {
+  display: flex;
+  align-items: flex-end;
+  width: 190px;
+  height: 30px;
+  padding-bottom: 1px;
+}
+.car-specifications ul img {
+  margin-right: 8px;
+}
+
+/* Footer */
+
+footer {
+  background-color: var(--dark-blue);
+  /* width: 100vw; */
+  height: 200px;
+  padding: 24px 80px 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+}
+
+footer h3 {
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 1.5px;
+}
+.company-info,
+.contact-info {
+  flex-grow: 1;
+}
+.company-info {
+  width: 430px;
+}
+
+.company-info ul {
+  flex-wrap: wrap;
+}
+.company-info li {
+  flex: 1 1 20px;
+  width: 128px;
+  line-height: 1.667;
+}
+
+.contact-info .phone {
+  min-width: 79px;
+}
+.contact-info a {
+  color: var(--light-blue);
+}
+.contact-info ul {
+  margin-left: 46px;
+  min-width: 149px;
+}
+.contact-info li {
+  line-height: 1.667;
+}
+
+.social-media {
+  padding-left: 90px;
+}
+.social-media div:not(:last-child) {
+  padding-right: 20px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
