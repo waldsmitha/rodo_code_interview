@@ -3,6 +3,25 @@
 const Search = () => {
   const [searchValue, setSearchValue] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => {
+    //Logic
+    const handleClickOutside = (e) => {
+      if (!inputRef.current.contains(e.target)) {
+        setSearchValue("");
+      }
+    };
+
+    //Bound event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    //Cleanup function
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [inputRef]);
+
   //   const [listData, setListData] = React.useState([
   //     {brand: 'Honda', model:[{
   //       carType: "Honda Accord",
@@ -58,7 +77,6 @@ const Search = () => {
       );
       setSearchResults(filteredResults);
     }
-    console.log(searchValue);
   }, [searchValue]);
 
   return (
@@ -68,26 +86,45 @@ const Search = () => {
         placeholder="Search"
         value={searchValue}
         onChange={onChangeHandler}
+        ref={inputRef}
       />
       {/* <img
         src={require("../assets/icons/social/social_facebook_white.svg")}
         alt=""
       /> */}
-      <div className="search-results">
-        {searchResults.length > 0 &&
-          searchResults.map((item, i) => (
+
+      {searchResults.length > 0 && (
+        <div className="search-results">
+          {searchResults.map((item, i) => (
             <div className="search-result">
-              <li className="car-type" key={`carType${i}`}>
+              <li
+                className="car-type"
+                key={`carType${i}`}
+                style={{ paddingLeft: "11.5px" }}
+              >
                 - {item.carType}
               </li>
               {item.models.map((model, i) => (
-                <li className="model" key={`model${i}`}>
+                <li
+                  className="model"
+                  key={`model${i}`}
+                  style={{ cursor: "pointer", paddingLeft: "30.5px" }}
+                  onMouseEnter={(e) => (
+                    (e.target.style.background = "#40cbff"),
+                    (e.target.style.color = "white")
+                  )}
+                  onMouseLeave={(e) => (
+                    (e.target.style.background = "none"),
+                    (e.target.style.color = "#969696")
+                  )}
+                >
                   {model}
                 </li>
               ))}
             </div>
-          ))}
-      </div>
+          ))}{" "}
+        </div>
+      )}
     </div>
   );
 };

@@ -12,6 +12,26 @@ var Search = function Search() {
       _React$useState4 = _slicedToArray(_React$useState3, 2),
       searchResults = _React$useState4[0],
       setSearchResults = _React$useState4[1];
+
+  var inputRef = React.useRef(null);
+
+  React.useEffect(function () {
+    //Logic
+    var handleClickOutside = function handleClickOutside(e) {
+      if (!inputRef.current.contains(e.target)) {
+        setSearchValue("");
+      }
+    };
+
+    //Bound event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    //Cleanup function
+    return function () {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [inputRef]);
+
   //   const [listData, setListData] = React.useState([
   //     {brand: 'Honda', model:[{
   //       carType: "Honda Accord",
@@ -32,7 +52,6 @@ var Search = function Search() {
   //       ],
   //     },]}
   //   ]);
-
 
   var _React$useState5 = React.useState([{
     carType: "Honda Accord",
@@ -60,7 +79,6 @@ var Search = function Search() {
       });
       setSearchResults(filteredResults);
     }
-    console.log(searchValue);
   }, [searchValue]);
 
   return React.createElement(
@@ -70,30 +88,46 @@ var Search = function Search() {
       type: "text",
       placeholder: "Search",
       value: searchValue,
-      onChange: onChangeHandler
+      onChange: onChangeHandler,
+      ref: inputRef
     }),
-    React.createElement(
+    searchResults.length > 0 && React.createElement(
       "div",
       { className: "search-results" },
-      searchResults.length > 0 && searchResults.map(function (item, i) {
+      searchResults.map(function (item, i) {
         return React.createElement(
           "div",
           { className: "search-result" },
           React.createElement(
             "li",
-            { className: "car-type", key: "carType" + i },
+            {
+              className: "car-type",
+              key: "carType" + i,
+              style: { paddingLeft: "11.5px" }
+            },
             "- ",
             item.carType
           ),
           item.models.map(function (model, i) {
             return React.createElement(
               "li",
-              { className: "model", key: "model" + i },
+              {
+                className: "model",
+                key: "model" + i,
+                style: { cursor: "pointer", paddingLeft: "30.5px" },
+                onMouseEnter: function onMouseEnter(e) {
+                  return e.target.style.background = "#40cbff", e.target.style.color = "white";
+                },
+                onMouseLeave: function onMouseLeave(e) {
+                  return e.target.style.background = "none", e.target.style.color = "#969696";
+                }
+              },
               model
             );
           })
         );
-      })
+      }),
+      " "
     )
   );
 };

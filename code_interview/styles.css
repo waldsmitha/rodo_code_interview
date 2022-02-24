@@ -45,6 +45,7 @@ html {
   /* Font Sizes */
   --header1: 18.6px;
   --header2: 24px;
+  --font1: 10px;
   --font2: 12px;
   --font3: 13px;
   --font4: 14px;
@@ -104,12 +105,8 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   height: 50px;
   background-color: var(--light-blue);
-  padding: 8.88px 32.5px;
 }
 
 header .container {
@@ -142,27 +139,41 @@ header li {
 }
 
 nav {
-  padding-left: 100px;
+  padding: 16px 0 13px 100px;
 }
 nav li {
   letter-spacing: 1px;
+  cursor: pointer;
 }
 nav li:last-child {
-  padding-left: 1rem;
+  padding-left: 13.52px;
+}
+nav #lease-icon {
+  padding-right: 7px;
+}
+nav #showroom-icon {
+  padding-right: 1.27px;
 }
 
 .user-info {
   font-size: var(--font4);
+  /* background: red; */
+  align-items: flex-start;
+  cursor: pointer;
 }
+
 .drop-down-icon {
   width: 12px;
   height: 9px;
+  margin-left: 6px;
+}
+
+.wide {
+  width: 16px;
+  margin-left: 6.67px;
 }
 
 .search-bar {
-  height: 75px;
-  align-items: center;
-  justify-content: space-between;
   background-color: var(--dark-blue);
 }
 
@@ -172,9 +183,11 @@ nav li:last-child {
 }
 #search_container input {
   width: 250px;
-  height: 26.5px;
+  height: 30px;
   font-size: var(--font5);
-  padding: 11.5px;
+  padding: 11.25px;
+  border: none;
+  border-radius: 0;
 }
 #search_container .car-type {
   list-style-type: none;
@@ -182,70 +195,182 @@ nav li:last-child {
 }
 #search_container .model {
   list-style-type: none;
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
 }
 #search_container .search-results {
   background: #ffffff;
   color: var(--gray-text);
-  width: 300px;
+  width: 280px;
   position: absolute;
   /* height: 100%; */
   z-index: 10;
   top: 100%;
+  border: 1px solid #dcdcdc;
+  padding-bottom: 26.29px;
+}
+#search_container .search-results li {
+  font-size: var(--font5);
+  line-height: 1.4;
 }
 
-.search-bar div {
-  flex-grow: 1;
-}
 .search-bar .inventory {
   font-size: var(--font6);
+  text-align: center;
+  height: 31px;
 }
 
 .search-bar .sort-results {
   font-size: var(--font3);
   text-transform: uppercase;
   letter-spacing: 1.3px;
+  margin-right: 34.58px;
+}
+.search-bar .sort-results div {
+  cursor: pointer;
+}
+.search-bar .sort-results div:last-child {
+  margin-left: 12px;
 }
 
 /* Card */
 
 .results-container {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr)); */
   grid-template-columns: repeat(2, minmax(35rem, 1fr));
-  column-gap: 51px;
-  row-gap: 34.42px;
-  margin: 35px 38px;
+  column-gap: 50.84px;
+  row-gap: 34.41px;
+  padding: 34.81px 40.84px 42.39px 38px;
 }
-.result-card {
-  height: 560px;
+.result-card,
+.result-card-small,
+.result-card-special {
+  height: 559px;
   width: 481px;
   padding-top: 1rem;
-  border-top: 1px solid var(--gray-text);
+  border-top: 1px solid #e8eae0;
   justify-content: space-between;
   align-items: flex-start;
 }
+.result-card .container {
+  padding-top: 61.43px;
+  padding-bottom: 77.69px;
+}
+
+.result-card-small {
+  height: 529px;
+}
+.result-card-small .container {
+  padding-top: 31.43px;
+  padding-bottom: 78.9px;
+}
+.result-card-small .unavailable-container {
+  padding-top: 34.73px;
+  padding-bottom: 122.45px;
+}
+.result-card-special .container {
+  padding-bottom: 77.69px;
+}
+.result-card-special .middle-content-wrapper {
+  height: 273px;
+}
 
 .card-header {
-  color: var(--dark-blue);
   justify-content: space-between;
   width: 100%;
+}
+.card-header h2 {
+  color: var(--dark-blue);
+  letter-spacing: 0.24px;
   font-family: "NeueHaasGrotText-55Roman", sans-serif;
 }
-
 .card-header img {
-  margin-right: 8.77px;
+  margin-right: 8.6px;
+  cursor: pointer;
 }
 
-.financing-info {
+.middle-content-wrapper {
+  height: 288px;
+}
+.middle-content-wrapper-small {
+  height: 258px;
+}
+
+.special-offer {
+  color: var(--dark-blue);
+  height: 29px;
+  width: 241.83px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.special-offer .discount-notification {
+  width: 80px;
+  height: 27px;
+  background: var(--dark-blue);
+  color: #ffffff;
+  text-transform: uppercase;
+  font-size: var(--font2);
+  letter-spacing: 0.5px;
+  clip-path: polygon(91.25% 0%, 100% 50%, 91.25% 100%, 0 100%, 0 0);
+}
+.special-offer .original-price {
+  font-size: var(--font6);
+  margin-right: 8.62px;
+  width: 49px;
+  margin-left: 7px;
+  padding-top: 5.16px;
+  position: relative;
+}
+.special-offer .original-price span {
+  padding: 0.5px 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(-16px) translateX(3px) rotateZ(-20deg);
+  background: var(--dark-blue);
+}
+.special-offer .original-price::first-letter {
+  font-size: var(--font4);
+  vertical-align: text-top;
+}
+.special-offer .discount-expiration {
+  padding-top: 8.4px;
+  font-size: var(--font2);
+}
+
+.financing-info,
+.unavailable-info {
   color: var(--gray-text);
-}
-.financing-info {
   width: 200px;
-  padding-left: 1.16;
+  padding-left: 1px;
 }
+
+.unavailable-info p {
+  color: var(--dark-gray-text);
+  font-size: var(--font6);
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  width: 237.5px;
+}
+
+.unavailable-info button {
+  margin-top: 21.27px;
+  border: none;
+  background: var(--light-blue);
+  color: #ffffff;
+  font-size: var(--font1);
+  width: 136px;
+  height: 30px;
+  border-radius: 22.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-top: 11px;
+  padding-bottom: 7px;
+  cursor: pointer;
+}
+
 .financing-info div {
-  border-bottom: 1px solid #e8ea80;
+  border-bottom: 1px solid #e8eae0;
   width: 150px;
 }
 
@@ -256,6 +381,11 @@ nav li:last-child {
   font-size: var(--font9);
   color: var(--dark-gray-text);
 }
+.financing-info .monthly-payments span:first-child::first-letter {
+  font-size: var(--font6);
+  vertical-align: text-top;
+}
+
 .financing-info .monthly-payments span:nth-child(2) {
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -270,12 +400,16 @@ nav li:last-child {
   text-transform: uppercase;
   padding-bottom: 7.96px;
   padding-top: 15.53px;
-}
-.financing-info .cash-down {
-  font-size: var(--font7);
   color: var(--dark-gray-text);
 }
-.financing-info .cash-down span {
+.financing-info .cash-down span:first-child {
+  font-size: var(--font7);
+}
+.financing-info .cash-down span:first-child:first-letter {
+  font-size: var(--font5);
+  vertical-align: text-top;
+}
+.financing-info .cash-down span:last-child {
   letter-spacing: 1.2px;
   font-size: var(--font2);
   color: var(--gray-text);
@@ -314,15 +448,18 @@ nav li:last-child {
 
 .car-specifications {
   padding-top: 57.47px;
-  padding-left: 50px;
+  padding-left: 51.02px;
   height: 155px;
   width: 380px;
 }
 
 .car-image {
   position: absolute;
-  bottom: calc(100% - 53px);
+  display: grid;
+  place-content: center;
+  bottom: calc(100% - 62px);
   right: 34px;
+  height: 183.3px;
 }
 
 .car-specifications ul li {
@@ -331,6 +468,7 @@ nav li:last-child {
   width: 190px;
   height: 30px;
   padding-bottom: 1px;
+  font-size: var(--font4);
 }
 .car-specifications ul img {
   margin-right: 8px;
@@ -340,13 +478,8 @@ nav li:last-child {
 
 footer {
   background-color: var(--dark-blue);
-  /* width: 100vw; */
   height: 200px;
   padding: 24px 80px 0 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: space-between;
 }
 
 footer h3 {
@@ -370,7 +503,13 @@ footer h3 {
   width: 128px;
   line-height: 1.667;
 }
+.company-info a {
+  color: #ffffff;
+}
 
+.contact-info {
+  font-style: normal;
+}
 .contact-info .phone {
   min-width: 79px;
 }
@@ -388,10 +527,20 @@ footer h3 {
 .social-media {
   padding-left: 90px;
 }
-.social-media div:not(:last-child) {
+.social-media img {
+  cursor: pointer;
+}
+.social-media a:not(:last-child) {
   padding-right: 20px;
 }
 
 .space-between {
   justify-content: space-between;
+}
+.relative-wrapper {
+  position: relative;
+}
+.max-width-wrapper {
+  max-width: 1092px;
+  margin: 0 auto;
 }
