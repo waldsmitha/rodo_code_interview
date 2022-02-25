@@ -65,10 +65,70 @@ var Search = function Search() {
       var filteredResults = listData.filter(function (item) {
         return item.brand.toLowerCase().includes(searchValue.toLowerCase());
       });
-      console.log(filteredResults);
       setSearchResults(filteredResults);
     }
   }, [searchValue]);
+
+  var CarBrand = function CarBrand(_ref) {
+    var item = _ref.item;
+    return React.createElement(
+      "h3",
+      {
+        style: {
+          paddingBottom: "4.55px",
+          fontSize: "17px",
+          color: "#000000"
+        }
+      },
+      item.brand
+    );
+  };
+  var CarType = function CarType(_ref2) {
+    var item = _ref2.item,
+        index = _ref2.index;
+
+    return React.createElement(
+      "li",
+      {
+        key: item.type,
+        style: {
+          listStyleType: "none",
+          color: "#40cbff",
+          fontSize: "15px",
+          fontFamily: "HaasGrotText-65Medium, sans-serif"
+        }
+      },
+      "- ",
+      item.type
+    );
+  };
+
+  var Model = function Model(_ref3) {
+    var input = _ref3.input,
+        index = _ref3.index;
+
+    return React.createElement(
+      "li",
+      {
+        key: "" + input + index,
+        style: {
+          cursor: "pointer",
+          paddingLeft: "19px",
+          fontSize: "15px",
+          lineHeight: "21px",
+          listStyleType: "none",
+          color: "#969696"
+        },
+        onMouseEnter: function onMouseEnter(e) {
+          return e.target.style.background = "#40cbff", e.target.style.color = "white";
+        },
+        onMouseLeave: function onMouseLeave(e) {
+          return e.target.style.background = "none", e.target.style.color = "#969696";
+        }
+      },
+      input
+    );
+  };
 
   return React.createElement(
     "div",
@@ -106,58 +166,15 @@ var Search = function Search() {
       searchResults.map(function (item, i) {
         return React.createElement(
           "div",
-          null,
-          React.createElement(
-            "h3",
-            {
-              style: {
-                paddingBottom: "4.55px",
-                fontSize: "17px",
-                color: "#000000"
-              }
-            },
-            item.brand
-          ),
-          item.model.map(function (item) {
+          { key: item.brand },
+          React.createElement(CarBrand, { item: item }),
+          item.model.map(function (item, i) {
             return React.createElement(
               "div",
-              null,
-              React.createElement(
-                "li",
-                {
-                  key: "carType" + i,
-                  style: {
-                    listStyleType: "none",
-                    color: "#40cbff",
-                    fontSize: "15px",
-                    fontFamily: "HaasGrotText-65Medium, sans-serif"
-                  }
-                },
-                "- ",
-                item.type
-              ),
+              { key: "models" + i },
+              React.createElement(CarType, { item: item, index: i }),
               item.cars.map(function (car, i) {
-                return React.createElement(
-                  "li",
-                  {
-                    key: "model" + i,
-                    style: {
-                      cursor: "pointer",
-                      paddingLeft: "19px",
-                      fontSize: "15px",
-                      lineHeight: "21px",
-                      listStyleType: "none",
-                      color: "#969696"
-                    },
-                    onMouseEnter: function onMouseEnter(e) {
-                      return e.target.style.background = "#40cbff", e.target.style.color = "white";
-                    },
-                    onMouseLeave: function onMouseLeave(e) {
-                      return e.target.style.background = "none", e.target.style.color = "#969696";
-                    }
-                  },
-                  car
-                );
+                return React.createElement(Model, { key: "model" + i, input: car, index: i });
               })
             );
           })

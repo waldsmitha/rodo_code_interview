@@ -11,7 +11,7 @@ const Search = () => {
       brand: "Honda",
       model: [
         {
-          type: "Honda Accord",
+          modelType: "Honda Accord",
           cars: [
             "Honda Accord EX",
             "Honda Accord EX-L",
@@ -20,7 +20,7 @@ const Search = () => {
           ],
         },
         {
-          type: "Honda Accord Hybrid",
+          modelType: "Honda Accord Hybrid",
           cars: [
             "Honda Accord Hybrid Base",
             "Honda Accord Hybrid EX",
@@ -64,13 +64,67 @@ const Search = () => {
       const filteredResults = listData.filter((item) =>
         item.brand.toLowerCase().includes(searchValue.toLowerCase())
       );
-      console.log(filteredResults);
       setSearchResults(filteredResults);
     }
   }, [searchValue]);
 
+  //Components
+  const CarBrand = ({ item }) => (
+    <h3
+      style={{
+        paddingBottom: "4.55px",
+        fontSize: "17px",
+        color: "#000000",
+      }}
+    >
+      {item.brand}
+    </h3>
+  );
+
+  const CarModelType = ({ item }) => {
+    return (
+      <li
+        key={item.modelType}
+        style={{
+          listStyleType: "none",
+          color: "#40cbff",
+          fontSize: "15px",
+          fontFamily: "HaasGrotText-65Medium, sans-serif",
+        }}
+      >
+        - {item.modelType}
+      </li>
+    );
+  };
+
+  const CarModel = ({ input, index }) => {
+    return (
+      <li
+        key={`${input}${index}`}
+        style={{
+          cursor: "pointer",
+          paddingLeft: "19px",
+          fontSize: "15px",
+          lineHeight: "21px",
+          listStyleType: "none",
+          color: "#969696",
+        }}
+        onMouseEnter={(e) => (
+          (e.target.style.background = "#40cbff"),
+          (e.target.style.color = "white")
+        )}
+        onMouseLeave={(e) => (
+          (e.target.style.background = "none"),
+          (e.target.style.color = "#969696")
+        )}
+      >
+        {input}
+      </li>
+    );
+  };
+
   return (
-    <div>
+    <>
       <input
         type="text"
         placeholder="Search"
@@ -101,61 +155,21 @@ const Search = () => {
           }}
         >
           {searchResults.map((item, i) => (
-            <div>
-              <h3
-                style={{
-                  paddingBottom: "4.55px",
-                  fontSize: "17px",
-                  color: "#000000",
-                }}
-              >
-                {item.brand}
-              </h3>
-              {item.model.map((item) => {
-                return (
-                  <div>
-                    <li
-                      key={`carType${i}`}
-                      style={{
-                        listStyleType: "none",
-                        color: "#40cbff",
-                        fontSize: "15px",
-                        fontFamily: "HaasGrotText-65Medium, sans-serif",
-                      }}
-                    >
-                      - {item.type}
-                    </li>
-                    {item.cars.map((car, i) => (
-                      <li
-                        key={`model${i}`}
-                        style={{
-                          cursor: "pointer",
-                          paddingLeft: "19px",
-                          fontSize: "15px",
-                          lineHeight: "21px",
-                          listStyleType: "none",
-                          color: "#969696",
-                        }}
-                        onMouseEnter={(e) => (
-                          (e.target.style.background = "#40cbff"),
-                          (e.target.style.color = "white")
-                        )}
-                        onMouseLeave={(e) => (
-                          (e.target.style.background = "none"),
-                          (e.target.style.color = "#969696")
-                        )}
-                      >
-                        {car}
-                      </li>
-                    ))}
-                  </div>
-                );
-              })}
+            <div key={item.brand}>
+              <CarBrand item={item} />
+              {item.model.map((item, i) => (
+                <div key={`models${i}`}>
+                  <CarModelType item={item} index={i} />
+                  {item.cars.map((car, i) => (
+                    <CarModel key={`model${i}`} input={car} index={i} />
+                  ))}
+                </div>
+              ))}
             </div>
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
