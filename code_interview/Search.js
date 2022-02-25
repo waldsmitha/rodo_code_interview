@@ -68,6 +68,7 @@ var Search = function Search() {
     setSearchValue(e.target.value);
   };
 
+  //Filters Cars
   React.useEffect(function () {
     if (searchValue.length === 0) {
       setSearchValue("");
@@ -126,8 +127,7 @@ var Search = function Search() {
             );
           })
         );
-      }),
-      " "
+      })
     )
   );
 };

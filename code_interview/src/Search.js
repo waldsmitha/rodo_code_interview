@@ -66,6 +66,7 @@ const Search = () => {
     setSearchValue(e.target.value);
   };
 
+  //Filters Cars
   React.useEffect(() => {
     if (searchValue.length === 0) {
       setSearchValue("");
@@ -88,11 +89,6 @@ const Search = () => {
         onChange={onChangeHandler}
         ref={inputRef}
       />
-      {/* <img
-        src={require("../assets/icons/social/social_facebook_white.svg")}
-        alt=""
-      /> */}
-
       {searchResults.length > 0 && (
         <div className="search-results">
           {searchResults.map((item, i) => (
@@ -122,7 +118,7 @@ const Search = () => {
                 </li>
               ))}
             </div>
-          ))}{" "}
+          ))}
         </div>
       )}
     </div>

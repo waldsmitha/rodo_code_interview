@@ -1,36 +1,37 @@
-/* Global Styles */
-
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Fonts */
 @font-face {
-  font-family: NeueHaasGrotText-55Roman;
+  font-family: HaasGrotText-55Roman;
   src: url("./assets/Typefaces/NeueHaasGrotText-55Roman.otf");
 }
 @font-face {
-  font-family: NeueHaasGrotText-56Italic;
+  font-family: HaasGrotText-56Italic;
   src: url("./assets/Typefaces/NeueHaasGrotText-56Italic.otf");
 }
 @font-face {
-  font-family: NeueHaasGrotText-65Medium;
+  font-family: HaasGrotText-65Medium;
   src: url("./assets/Typefaces/NeueHaasGrotText-65Medium.otf");
 }
 @font-face {
-  font-family: NeueHaasGrotText-66MediumItalic;
+  font-family: HaasGrotText-66MediumItalic;
   src: url("./assets/Typefaces/NeueHaasGrotText-66MediumItalic.otf");
 }
 @font-face {
-  font-family: NeueHaasGrotText-75Bold;
+  font-family: HaasGrotText-75Bold;
   src: url("./assets/Typefaces/NeueHaasGrotText-75Bold.otf");
 }
 @font-face {
-  font-family: NeueHaasGrotText-76BoldItalic;
+  font-family: HaasGrotText-76BoldItalic;
   src: url("./assets/Typefaces/NeueHaasGrotText-76BoldItalic.otf");
 }
 
+/* Variables & General Styling */
 html {
   font-size: 62.5%;
 
@@ -56,7 +57,10 @@ html {
 
   scroll-behavior: smooth;
 }
-
+body {
+  font-family: HaasGrotText-55Roman, sans-serif;
+  color: var(--body-text);
+}
 h1 {
   font-size: var(--header1);
 }
@@ -71,7 +75,6 @@ a,
 p {
   font-size: var(--font2);
 }
-
 ul {
   list-style: none;
 }
@@ -79,31 +82,8 @@ a {
   text-decoration: none;
   color: black;
 }
-.flex {
-  display: flex;
-}
 
-.column {
-  flex-direction: column;
-}
-
-.flex-row-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.flex-column-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-body {
-  font-family: Helvetica, sans-serif;
-  color: var(--body-text);
-}
-
+/* Header */
 header {
   height: 50px;
   background-color: var(--light-blue);
@@ -123,15 +103,15 @@ header h1 {
 }
 
 header h1 .italic {
-  font-family: NeueHaasGrotText-56Italic, serif;
+  font-family: HaasGrotText-56Italic, serif;
 }
 
 header h1 span {
-  font-family: NeueHaasGrotText-55Roman, serif;
+  font-family: HaasGrotText-55Roman, serif;
   font-size: 14.88px;
 }
 .search-bar .inventory {
-  font-family: NeueHaasGrotText-55Roman, serif;
+  font-family: HaasGrotText-55Roman, serif;
 }
 
 header li {
@@ -144,6 +124,7 @@ nav {
 nav li {
   letter-spacing: 1px;
   cursor: pointer;
+  font-family: HaasGrotText-55Roman;
 }
 nav li:last-child {
   padding-left: 13.52px;
@@ -157,9 +138,9 @@ nav #showroom-icon {
 
 .user-info {
   font-size: var(--font4);
-  /* background: red; */
   align-items: flex-start;
   cursor: pointer;
+  font-family: HaasGrotText-55Roman, serif;
 }
 
 .drop-down-icon {
@@ -173,6 +154,7 @@ nav #showroom-icon {
   margin-left: 6.67px;
 }
 
+/* Search Bar */
 .search-bar {
   background-color: var(--dark-blue);
   height: 75px;
@@ -233,8 +215,7 @@ nav #showroom-icon {
   margin-left: 12px;
 }
 
-/* Card */
-
+/* Cards */
 .results-container {
   display: grid;
   /* grid-template-columns: repeat(2, minmax(35rem, 1fr)); */
@@ -285,7 +266,7 @@ nav #showroom-icon {
 .card-header h2 {
   color: var(--dark-blue);
   letter-spacing: 0.24px;
-  font-family: "NeueHaasGrotText-55Roman", sans-serif;
+  font-family: HaasGrotText-55Roman, serif;
 }
 .card-header img {
   margin-right: 8.6px;
@@ -312,6 +293,8 @@ nav #showroom-icon {
   height: 27px;
   background: var(--dark-blue);
   color: #ffffff;
+  font-family: HaasGrotText-75Bold, sans-serif;
+  padding-top: 1px;
   text-transform: uppercase;
   font-size: var(--font2);
   letter-spacing: 0.5px;
@@ -324,6 +307,7 @@ nav #showroom-icon {
   margin-left: 7px;
   padding-top: 5.16px;
   position: relative;
+  font-family: HaasGrotText-65Medium, sans-serif;
 }
 .special-offer .original-price span {
   padding: 0.5px 25px;
@@ -384,6 +368,7 @@ nav #showroom-icon {
 .financing-info .monthly-payments span:first-child {
   font-size: var(--font9);
   color: var(--dark-gray-text);
+  font-family: HaasGrotText-75Bold;
 }
 .financing-info .monthly-payments span:first-child::first-letter {
   font-size: var(--font6);
@@ -394,10 +379,12 @@ nav #showroom-icon {
   text-transform: uppercase;
   letter-spacing: 1.2px;
   font-size: var(--font2);
+  font-family: HaasGrotText-55Roman;
 }
 .financing-info .monthly-payments span:last-child {
   text-transform: capitalize;
   font-size: var(--font4);
+  font-family: HaasGrotText-65Medium;
 }
 
 .financing-info .cash-down {
@@ -408,6 +395,7 @@ nav #showroom-icon {
 }
 .financing-info .cash-down span:first-child {
   font-size: var(--font7);
+  font-family: HaasGrotText-75Bold;
 }
 .financing-info .cash-down span:first-child:first-letter {
   font-size: var(--font5);
@@ -438,8 +426,14 @@ nav #showroom-icon {
 .car-color-interior,
 .car-color-exterior {
   margin: 0.75rem 0;
+  align-items: center;
   justify-content: flex-start;
   font-size: var(--font3);
+  letter-spacing: 0.15px;
+}
+.car-color-interior span,
+.car-color-exterior span {
+  font-family: HaasGrotText-65Medium, serif;
 }
 
 .car-specifications-container {
@@ -483,7 +477,6 @@ nav #showroom-icon {
 }
 
 /* Footer */
-
 footer {
   background-color: var(--dark-blue);
   min-height: 200px;
@@ -495,6 +488,7 @@ footer h3 {
   text-transform: uppercase;
   margin-bottom: 12px;
   letter-spacing: 1.5px;
+  font-family: HaasGrotText-75Bold, sans-serif;
 }
 .company-info-container,
 .contact-info-container {
@@ -522,7 +516,7 @@ footer h3 {
   font-style: normal;
 }
 .contact-info-container .phone {
-  min-width: 79px;
+  min-width: 80px;
 }
 .contact-info-container a {
   color: var(--light-blue);
@@ -546,6 +540,25 @@ footer h3 {
 }
 
 /* Utility Classes */
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-column-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .space-between {
   justify-content: space-between;
 }
@@ -604,6 +617,7 @@ footer h3 {
     margin: 0;
   }
 }
+
 @media screen and (max-width: 1000px) {
   .company-info-container {
     width: auto;
