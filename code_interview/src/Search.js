@@ -5,6 +5,34 @@ const Search = () => {
   const [searchResults, setSearchResults] = React.useState([]);
   const inputRef = React.useRef(null);
 
+  // Data
+  const [listData, setListData] = React.useState([
+    {
+      brand: "Honda",
+      model: [
+        {
+          type: "Honda Accord",
+          cars: [
+            "Honda Accord EX",
+            "Honda Accord EX-L",
+            "Honda Accord LX",
+            "Honda Accord Sport",
+          ],
+        },
+        {
+          type: "Honda Accord Hybrid",
+          cars: [
+            "Honda Accord Hybrid Base",
+            "Honda Accord Hybrid EX",
+            "Honda Accord Hybrid EX-L",
+            "Honda Accord Hybrid Touring",
+          ],
+        },
+      ],
+    },
+  ]);
+
+  // Function to click out of search results
   React.useEffect(() => {
     //Logic
     const handleClickOutside = (e) => {
@@ -22,51 +50,11 @@ const Search = () => {
     };
   }, [inputRef]);
 
-  //   const [listData, setListData] = React.useState([
-  //     {brand: 'Honda', model:[{
-  //       carType: "Honda Accord",
-  //       models: [
-  //         "Honda Accord EX",
-  //         "Honda Accord EX-L",
-  //         "Honda Accord LX",
-  //         "Honda Accord Sport",
-  //       ],
-  //     },
-  //     {
-  //       carType: "Honda Accord Hybrid",
-  //       models: [
-  //         "Honda Accord Hybrid Base",
-  //         "Honda Accord Hybrid EX",
-  //         "Honda Accord Hybrid EX-L",
-  //         "Honda Accord Hybrid Touring",
-  //       ],
-  //     },]}
-  //   ]);
-  const [listData, setListData] = React.useState([
-    {
-      carType: "Honda Accord",
-      models: [
-        "Honda Accord EX",
-        "Honda Accord EX-L",
-        "Honda Accord LX",
-        "Honda Accord Sport",
-      ],
-    },
-    {
-      carType: "Honda Accord Hybrid",
-      models: [
-        "Honda Accord Hybrid Base",
-        "Honda Accord Hybrid EX",
-        "Honda Accord Hybrid EX-L",
-        "Honda Accord Hybrid Touring",
-      ],
-    },
-  ]);
   const onChangeHandler = (e) => {
     setSearchValue(e.target.value);
   };
 
-  //Filters Cars
+  //Filters cars by brand
   React.useEffect(() => {
     if (searchValue.length === 0) {
       setSearchValue("");
@@ -74,8 +62,9 @@ const Search = () => {
     }
     if (searchValue.length > 0) {
       const filteredResults = listData.filter((item) =>
-        item.carType.toLowerCase().includes(searchValue.toLowerCase())
+        item.brand.toLowerCase().includes(searchValue.toLowerCase())
       );
+      console.log(filteredResults);
       setSearchResults(filteredResults);
     }
   }, [searchValue]);
@@ -88,35 +77,80 @@ const Search = () => {
         value={searchValue}
         onChange={onChangeHandler}
         ref={inputRef}
+        style={{
+          width: "250px",
+          height: "30px",
+          fontSize: "15px",
+          padding: "11.25px",
+          border: "none",
+          borderRadius: "0",
+        }}
       />
       {searchResults.length > 0 && (
-        <div className="search-results">
+        <div
+          style={{
+            paddingLeft: "11.5px",
+            paddingTop: "9.68px",
+            background: "#ffffff",
+            width: "280px",
+            position: "absolute",
+            top: "100%",
+            zIndex: "10",
+            border: "1px solid #dcdcdc",
+            paddingBottom: "26.29px",
+          }}
+        >
           {searchResults.map((item, i) => (
-            <div className="search-result">
-              <li
-                className="car-type"
-                key={`carType${i}`}
-                style={{ paddingLeft: "11.5px" }}
+            <div>
+              <h3
+                style={{
+                  paddingBottom: "4.55px",
+                  fontSize: "17px",
+                  color: "#000000",
+                }}
               >
-                - {item.carType}
-              </li>
-              {item.models.map((model, i) => (
-                <li
-                  className="model"
-                  key={`model${i}`}
-                  style={{ cursor: "pointer", paddingLeft: "30.5px" }}
-                  onMouseEnter={(e) => (
-                    (e.target.style.background = "#40cbff"),
-                    (e.target.style.color = "white")
-                  )}
-                  onMouseLeave={(e) => (
-                    (e.target.style.background = "none"),
-                    (e.target.style.color = "#969696")
-                  )}
-                >
-                  {model}
-                </li>
-              ))}
+                {item.brand}
+              </h3>
+              {item.model.map((item) => {
+                return (
+                  <div>
+                    <li
+                      key={`carType${i}`}
+                      style={{
+                        listStyleType: "none",
+                        color: "#40cbff",
+                        fontSize: "15px",
+                        fontFamily: "HaasGrotText-65Medium, sans-serif",
+                      }}
+                    >
+                      - {item.type}
+                    </li>
+                    {item.cars.map((car, i) => (
+                      <li
+                        key={`model${i}`}
+                        style={{
+                          cursor: "pointer",
+                          paddingLeft: "19px",
+                          fontSize: "15px",
+                          lineHeight: "21px",
+                          listStyleType: "none",
+                          color: "#969696",
+                        }}
+                        onMouseEnter={(e) => (
+                          (e.target.style.background = "#40cbff"),
+                          (e.target.style.color = "white")
+                        )}
+                        onMouseLeave={(e) => (
+                          (e.target.style.background = "none"),
+                          (e.target.style.color = "#969696")
+                        )}
+                      >
+                        {car}
+                      </li>
+                    ))}
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>

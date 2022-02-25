@@ -15,6 +15,25 @@ var Search = function Search() {
 
   var inputRef = React.useRef(null);
 
+  // Data
+
+  var _React$useState5 = React.useState([{
+    brand: "Honda",
+    model: [{
+      type: "Honda Accord",
+      cars: ["Honda Accord EX", "Honda Accord EX-L", "Honda Accord LX", "Honda Accord Sport"]
+    }, {
+      type: "Honda Accord Hybrid",
+      cars: ["Honda Accord Hybrid Base", "Honda Accord Hybrid EX", "Honda Accord Hybrid EX-L", "Honda Accord Hybrid Touring"]
+    }]
+  }]),
+      _React$useState6 = _slicedToArray(_React$useState5, 2),
+      listData = _React$useState6[0],
+      setListData = _React$useState6[1];
+
+  // Function to click out of search results
+
+
   React.useEffect(function () {
     //Logic
     var handleClickOutside = function handleClickOutside(e) {
@@ -32,43 +51,11 @@ var Search = function Search() {
     };
   }, [inputRef]);
 
-  //   const [listData, setListData] = React.useState([
-  //     {brand: 'Honda', model:[{
-  //       carType: "Honda Accord",
-  //       models: [
-  //         "Honda Accord EX",
-  //         "Honda Accord EX-L",
-  //         "Honda Accord LX",
-  //         "Honda Accord Sport",
-  //       ],
-  //     },
-  //     {
-  //       carType: "Honda Accord Hybrid",
-  //       models: [
-  //         "Honda Accord Hybrid Base",
-  //         "Honda Accord Hybrid EX",
-  //         "Honda Accord Hybrid EX-L",
-  //         "Honda Accord Hybrid Touring",
-  //       ],
-  //     },]}
-  //   ]);
-
-  var _React$useState5 = React.useState([{
-    carType: "Honda Accord",
-    models: ["Honda Accord EX", "Honda Accord EX-L", "Honda Accord LX", "Honda Accord Sport"]
-  }, {
-    carType: "Honda Accord Hybrid",
-    models: ["Honda Accord Hybrid Base", "Honda Accord Hybrid EX", "Honda Accord Hybrid EX-L", "Honda Accord Hybrid Touring"]
-  }]),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      listData = _React$useState6[0],
-      setListData = _React$useState6[1];
-
   var onChangeHandler = function onChangeHandler(e) {
     setSearchValue(e.target.value);
   };
 
-  //Filters Cars
+  //Filters cars by brand
   React.useEffect(function () {
     if (searchValue.length === 0) {
       setSearchValue("");
@@ -76,8 +63,9 @@ var Search = function Search() {
     }
     if (searchValue.length > 0) {
       var filteredResults = listData.filter(function (item) {
-        return item.carType.toLowerCase().includes(searchValue.toLowerCase());
+        return item.brand.toLowerCase().includes(searchValue.toLowerCase());
       });
+      console.log(filteredResults);
       setSearchResults(filteredResults);
     }
   }, [searchValue]);
@@ -90,40 +78,87 @@ var Search = function Search() {
       placeholder: "Search",
       value: searchValue,
       onChange: onChangeHandler,
-      ref: inputRef
+      ref: inputRef,
+      style: {
+        width: "250px",
+        height: "30px",
+        fontSize: "15px",
+        padding: "11.25px",
+        border: "none",
+        borderRadius: "0"
+      }
     }),
     searchResults.length > 0 && React.createElement(
       "div",
-      { className: "search-results" },
+      {
+        style: {
+          paddingLeft: "11.5px",
+          paddingTop: "9.68px",
+          background: "#ffffff",
+          width: "280px",
+          position: "absolute",
+          top: "100%",
+          zIndex: "10",
+          border: "1px solid #dcdcdc",
+          paddingBottom: "26.29px"
+        }
+      },
       searchResults.map(function (item, i) {
         return React.createElement(
           "div",
-          { className: "search-result" },
+          null,
           React.createElement(
-            "li",
+            "h3",
             {
-              className: "car-type",
-              key: "carType" + i,
-              style: { paddingLeft: "11.5px" }
+              style: {
+                paddingBottom: "4.55px",
+                fontSize: "17px",
+                color: "#000000"
+              }
             },
-            "- ",
-            item.carType
+            item.brand
           ),
-          item.models.map(function (model, i) {
+          item.model.map(function (item) {
             return React.createElement(
-              "li",
-              {
-                className: "model",
-                key: "model" + i,
-                style: { cursor: "pointer", paddingLeft: "30.5px" },
-                onMouseEnter: function onMouseEnter(e) {
-                  return e.target.style.background = "#40cbff", e.target.style.color = "white";
+              "div",
+              null,
+              React.createElement(
+                "li",
+                {
+                  key: "carType" + i,
+                  style: {
+                    listStyleType: "none",
+                    color: "#40cbff",
+                    fontSize: "15px",
+                    fontFamily: "HaasGrotText-65Medium, sans-serif"
+                  }
                 },
-                onMouseLeave: function onMouseLeave(e) {
-                  return e.target.style.background = "none", e.target.style.color = "#969696";
-                }
-              },
-              model
+                "- ",
+                item.type
+              ),
+              item.cars.map(function (car, i) {
+                return React.createElement(
+                  "li",
+                  {
+                    key: "model" + i,
+                    style: {
+                      cursor: "pointer",
+                      paddingLeft: "19px",
+                      fontSize: "15px",
+                      lineHeight: "21px",
+                      listStyleType: "none",
+                      color: "#969696"
+                    },
+                    onMouseEnter: function onMouseEnter(e) {
+                      return e.target.style.background = "#40cbff", e.target.style.color = "white";
+                    },
+                    onMouseLeave: function onMouseLeave(e) {
+                      return e.target.style.background = "none", e.target.style.color = "#969696";
+                    }
+                  },
+                  car
+                );
+              })
             );
           })
         );
